@@ -11,13 +11,13 @@ const MyForm: React.FC = () => {
 
   const { name, setName, email, setEmail, message, setMessage, setResponseMessage } = context;
 
-  const handleSubmit = async ({name, email} : any) => {
+  const handleSubmit = async ({name, email, message} : any) => {
     const response = await fetch('/api/contact', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name, email }), // Используйте значения из формы
+      body: JSON.stringify({ name, email, message }),
     });
 
     if (response.ok) {
@@ -33,7 +33,7 @@ const MyForm: React.FC = () => {
       name="myForm"
       layout="vertical"
       initialValues={{ remember: true }}
-      onFinish={handleSubmit} // Исправлено
+      onFinish={handleSubmit}
     >
       <FormStyles.Item
         label="Name"
@@ -62,7 +62,7 @@ const MyForm: React.FC = () => {
         label="Message"
         name="message"
         rules={[{ message: 'Please enter your message!' }]}>
-        <TextAreaStyles value={message} onChange={(e) => setMessage(e.target.value)} rows={4} />
+        <TextAreaStyles required={true} value={message} onChange={(e) => setMessage(e.target.value)} rows={4} />
       </FormStyles.Item>
 
       <FormStyles.Item>
