@@ -10,8 +10,19 @@ interface ContextProps {
   responseMessage: string;
   setResponseMessage: React.Dispatch<React.SetStateAction<string>>;
 }
+
+const initialContext: ContextProps = {
+  name: '',
+  setName: () => {},
+  email: '',
+  setEmail: () => {},
+  message: '',
+  setMessage: () => {},
+  responseMessage: '',
+  setResponseMessage: () => {},
+}
 // Создаем контекст вне компонента
-export const Context = createContext<ContextProps | null>(null);
+export const Context = createContext<ContextProps>(initialContext);
 
 const MyProvider = ({ children } : React.PropsWithChildren) => {
   const [name, setName] = useState('');
