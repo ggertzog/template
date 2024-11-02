@@ -24,7 +24,7 @@ const MyForm: React.FC = () => {
       const data = await response.json();
       setResponseMessage(data.message);
     } else {
-      setResponseMessage('Ошибка при отправке данных.');
+      setResponseMessage('Error submitting form');
     }
   };
 
